@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    restart: on-failure
+    ports:
+      - 8081:8081
+    links:
+      - mongo
+    networks:
+      - go-sse-network
+  mongo:
+    container_name: mongo-database
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/go-sse-mongodb/database
+    networks:
+      - go-sse-network
+
+networks:
+  go-sse-network: 
+    driver: bridge
+
+volumes:
+  mongodb:
+    driver: local
