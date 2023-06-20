@@ -27,6 +27,7 @@ messageInputForm.addEventListener('submit', async (event) => {
 
 
 eventSource.addEventListener('message', function (event) {
+  const data = JSON.parse(event.data);
   const messageContainer = document.createElement("div");
   messageContainer.className = 'message-container';
 
